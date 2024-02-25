@@ -10,7 +10,13 @@ VectorEnumeration.jl is an implementation of the vector enumeration algorithm, a
 The package builds upon the types from [AbstractAlgebra.jl](https://github.com/Nemocas/AbstractAlgebra.jl) and provides additional functionality when [Hecke.jl](https://github.com/thofma/Hecke.jl) or [Oscar.jl](https://github.com/oscar-system/Oscar.jl) are loaded.
 
 ## Installation
-VectorEnumeration.jl is no registered package yet and therefore must be installed from sources.
+VectorEnumeration.jl is no registered package, but can be installed with:
+
+```
+julia> using Pkg
+
+julia> Pkg.add(url="https://github.com/Ktrompfl/VectorEnumeration.jl")
+```
  
 ## Quick start
 Here is an example of using VectorEnumeration.jl to compute the permutation matrix representation over $\mathbb{Q}$ and a $\mathbb{Q}$-base of the dihedral group of order 6 for the presentation $\langle a, b\ |\ a^3 = b^2 = (ab)^2 =1 \rangle$:

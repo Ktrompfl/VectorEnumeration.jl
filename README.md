@@ -2,17 +2,23 @@
 
 A [Julia](https://julialang.org) package for constructing matrix representations of finitely presented algebras over fields using vector enumeration.
 
---- 
+[![](https://img.shields.io/badge/docs-dev-blue.svg)](https://ktrompfl.github.io/VectorEnumeration.jl/dev)
 
-## Introduction
+#### Introduction
 VectorEnumeration.jl is an implementation of the vector enumeration algorithm, as presented by S.A. Linton in [[1]](https://github.com/Ktrompfl/VectorEnumeration.jl#references) and [[2]](https://github.com/Ktrompfl/VectorEnumeration.jl#references), and is based on the [latest available version](https://github.com/gap-packages/ve) of the authors implementation from 1996.
 
 The package builds upon the types from [AbstractAlgebra.jl](https://github.com/Nemocas/AbstractAlgebra.jl) and provides additional functionality when [Hecke.jl](https://github.com/thofma/Hecke.jl) or [Oscar.jl](https://github.com/oscar-system/Oscar.jl) are loaded.
 
-## Installation
-VectorEnumeration.jl is no registered package yet and therefore must be installed from sources.
+#### Installation
+VectorEnumeration.jl is no registered package, but can be installed with:
+
+```
+julia> using Pkg
+
+julia> Pkg.add(url="https://github.com/Ktrompfl/VectorEnumeration.jl")
+```
  
-## Quick start
+#### Quick start
 Here is an example of using VectorEnumeration.jl to compute the permutation matrix representation over $\mathbb{Q}$ and a $\mathbb{Q}$-base of the dihedral group of order 6 for the presentation $\langle a, b\ |\ a^3 = b^2 = (ab)^2 =1 \rangle$:
 
 ```jldoctest
@@ -52,10 +58,12 @@ julia> base_qa(A, R)
  [x^2*y]
 ```
 
-## License
+For more details, please see the [docs](https://ktrompfl.github.io/VectorEnumeration.jl/dev/).
+
+#### License
 VectorEnumeration.jl is licensed under the MIT license; see [LICENSE](https://github.com/Ktrompfl/VectorEnumeration.jl/blob/main/LICENSE) for the full license text.
 
-## References
+#### References
 
 [1] S.A. Linton, *Constructing matrix representations of finitely presented groups*,
 Journal of Symbolic Computation, Volume 12, Issues 4–5, 1991, Pages 427-438, ISSN 0747-7171,
