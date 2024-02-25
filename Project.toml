@@ -1,0 +1,32 @@
+name = "VectorEnumeration"
+uuid = "aa295a9a-824f-484d-ba28-6f4314f85a0b"
+authors = ["Florian Heine <fheine@rptu.de>", "Nicolaus Jacobsen <jacobsen@rptu.de>"]
+version = "0.1.0"
+
+[deps]
+AbstractAlgebra = "c3fe647b-3220-5bb0-a1ea-a7954cac585d"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+
+[weakdeps]
+Hecke = "3e1990a7-5d81-5526-99ce-9ba3ff248f21"
+Oscar = "f1435218-dba5-11e9-1e4d-f1a5fab5fc13"
+
+[extensions]
+VectorEnumerationHeckeExt = "Hecke"
+VectorEnumerationOscarExt = "Oscar"
+
+[compat]
+AbstractAlgebra = "0.35.2"
+julia = "1.6"
+
+[extras]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Hecke = "3e1990a7-5d81-5526-99ce-9ba3ff248f21"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
+Nemo = "2edaba10-b0f1-5616-af89-8c11ac63239a"
+Oscar = "f1435218-dba5-11e9-1e4d-f1a5fab5fc13"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+
+[targets]
+test = ["Documenter", "Hecke", "Logging", "Nemo", "Oscar", "Test", "LinearAlgebra"]
