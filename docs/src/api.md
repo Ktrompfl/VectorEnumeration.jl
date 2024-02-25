@@ -1,9 +1,9 @@
-# API
+# Library
 
 --- 
 
 ```@setup
-using AbstractAlgebra
+using Oscar  # loading Oscar makes sure all extensions are included
 using VectorEnumeration
 ```
 

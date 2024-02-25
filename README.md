@@ -1,79 +1,66 @@
-# VectorEnumeration
-VectorEnumeration is a Julia package for constructing matrix representations of finitely generated algebras over fields using vector enumeration.
+# VectorEnumeration.jl
 
----
+A [Julia](https://julialang.org) package for constructing matrix representations of finitely presented algebras over fields using vector enumeration.
 
-## Example of Usage
+--- 
 
-```Julia
+## Introduction
+VectorEnumeration.jl is an implementation of the vector enumeration algorithm, as presented by S.A. Linton in [[1]](@ref refs) and [[2]](@ref refs), and is based on the [latest available version](https://github.com/gap-packages/ve) of the authors implementation from 1996.
 
-julia> using Nemo
+The package builds upon the types from [AbstractAlgebra.jl](https://github.com/Nemocas/AbstractAlgebra.jl) and provides additional functionality when [Hecke.jl](https://github.com/thofma/Hecke.jl) or [Oscar.jl](https://github.com/oscar-system/Oscar.jl) are loaded.
 
-julia> using VectorEnumeration
+## Installation
+VectorEnumeration.jl is no registered package yet and therefore must be installed from sources.
+ 
+## Quick start
+Here is an example of using VectorEnumeration.jl to compute the permutation matrix representation over $\mathbb{Q}$ and a $\mathbb{Q}$-base of the dihedral group of order 6 for the presentation $\langle a, b\ |\ a^3 = b^2 = (ab)^2 =1 \rangle$:
 
-julia> field = QQ
-Rational field
+```jldoctest
+julia> using AbstractAlgebra, SparseArrays, VectorEnumeration
 
-julia> A, (a, b, c) = free_associative_algebra(QQ, ["a", "b", "c"])
-(Free associative algebra on 3 indeterminates over QQ, AbstractAlgebra.Generic.FreeAssAlgElem{QQFieldElem}[a, b, c])
+julia> A, (x, y) = free_associative_algebra(QQ, [:x, :y]);
 
-julia> inv = [a, b, c]  # all generators are involutions
-3-element Vector{AbstractAlgebra.Generic.FreeAssAlgElem{QQFieldElem}}:
- a
- b
- c
+julia> R = [x^3 - 1, y^2 - 1, (x*y)^2 - 1];
 
-julia> rel = [(a*b)^3, (b*c)^3, (a*c)^2]  # fixing relators
-3-element Vector{AbstractAlgebra.Generic.FreeAssAlgElem{QQFieldElem}}:
- a*b*a*b*a*b
- b*c*b*c*b*c
- a*c*a*c
+julia> X, Y = matrices_qa(SparseMatrixCSC, A, R);
 
-julia> rank = 1
-1
-
-julia> sub = [(a*b*c - 1, )]
-1-element Vector{Tuple{AbstractAlgebra.Generic.FreeAssAlgElem{QQFieldElem}}}:
- (a*b*c - 1,)
-
-julia> (generator, matrices), (dimension, ntotal), (images, preimages) = vector_enumeration(A, inv, rel, rank, sub)
-((AbstractAlgebra.Generic.FreeAssAlgElem{QQFieldElem}[a, b, c], SparseArrays.SparseMatrixCSC{QQFieldElem, Int64}[sparse([2, 1, 4, 3, 6, 5], [1, 2, 3, 4, 5, 6], QQFieldElem[1, 1, 1, 1, 1, 1], 6, 6), sparse([5, 3, 2, 6, 1, 4], [1, 2, 3, 4, 5, 6], QQFieldElem[1, 1, 1, 1, 1, 1], 6, 6), sparse([3, 4, 1, 2, 6, 5], [1, 2, 3, 4, 5, 6], QQFieldElem[1, 1, 1, 1, 1, 1], 6, 6)]), (6, 7), (nothing, SparseArrays.SparseVector{QQFieldElem, Int64}[  [1]  =  1]))
-
-julia> matrices[1]  #a
-6×6 SparseArrays.SparseMatrixCSC{QQFieldElem, Int64} with 6 stored entries:
+julia> X
+6×6 SparseMatrixCSC{Rational{BigInt}, Int64} with 6 stored entries:
  ⋅  1  ⋅  ⋅  ⋅  ⋅
- 1  ⋅  ⋅  ⋅  ⋅  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
  ⋅  ⋅  1  ⋅  ⋅  ⋅
+ 1  ⋅  ⋅  ⋅  ⋅  ⋅
  ⋅  ⋅  ⋅  ⋅  ⋅  1
+ ⋅  ⋅  ⋅  1  ⋅  ⋅
  ⋅  ⋅  ⋅  ⋅  1  ⋅
 
-julia> matrices[2]  #b
-6×6 SparseArrays.SparseMatrixCSC{QQFieldElem, Int64} with 6 stored entries:
+julia> Y
+6×6 SparseMatrixCSC{Rational{BigInt}, Int64} with 6 stored entries:
+ ⋅  ⋅  ⋅  1  ⋅  ⋅
  ⋅  ⋅  ⋅  ⋅  1  ⋅
- ⋅  ⋅  1  ⋅  ⋅  ⋅
- ⋅  1  ⋅  ⋅  ⋅  ⋅
  ⋅  ⋅  ⋅  ⋅  ⋅  1
  1  ⋅  ⋅  ⋅  ⋅  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
-
-julia> matrices[3]  #c
-6×6 SparseArrays.SparseMatrixCSC{QQFieldElem, Int64} with 6 stored entries:
- ⋅  ⋅  1  ⋅  ⋅  ⋅
- ⋅  ⋅  ⋅  1  ⋅  ⋅
- 1  ⋅  ⋅  ⋅  ⋅  ⋅
  ⋅  1  ⋅  ⋅  ⋅  ⋅
- ⋅  ⋅  ⋅  ⋅  ⋅  1
- ⋅  ⋅  ⋅  ⋅  1  ⋅
+ ⋅  ⋅  1  ⋅  ⋅  ⋅
 
-julia> dimension
-6
-
-julia> ntotal
-7
+julia> base_qa(A, R)
+6-element Vector{Vector{AbstractAlgebra.Generic.FreeAssAlgElem{Rational{BigInt}}}}:
+ [1]
+ [x]
+ [x^2]
+ [y]
+ [x*y]
+ [x^2*y]
 ```
 
-## References
-[S. Linton, Vector Enumeration Programs, version 3 (1993)]("https://github.com/gap-packages/ve").
+## License
+VectorEnumeration.jl is licensed under the MIT license; see [LICENSE](https://github.com/Ktrompfl/VectorEnumeration.jl/blob/main/LICENSE) for the full license text.
 
-[S. Linton, On Vector Enumeration, (1993)]("https://www.sciencedirect.com/science/article/pii/002437959390245J")
+## [References](@id refs)
+
+[1] S.A. Linton, *Constructing matrix representations of finitely presented groups*,
+Journal of Symbolic Computation, Volume 12, Issues 4–5, 1991, Pages 427-438, ISSN 0747-7171,
+<https://doi.org/10.1016/S0747-7171(08)80095-8>.
+
+[2] S.A. Linton, *On vector enumeration*, 
+Linear Algebra and its Applications, Volume 192, 1993, Pages 235-248, ISSN 0024-3795,
+<https://doi.org/10.1016/0024-3795(93)90245-J>.
