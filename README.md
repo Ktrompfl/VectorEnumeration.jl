@@ -5,7 +5,7 @@ A [Julia](https://julialang.org) package for constructing matrix representations
 --- 
 
 ## Introduction
-VectorEnumeration.jl is an implementation of the vector enumeration algorithm, as presented by S.A. Linton in [[1]](@ref refs) and [[2]](@ref refs), and is based on the [latest available version](https://github.com/gap-packages/ve) of the authors implementation from 1996.
+VectorEnumeration.jl is an implementation of the vector enumeration algorithm, as presented by S.A. Linton in [[1]](https://github.com/Ktrompfl/VectorEnumeration.jl#references) and [[2]](https://github.com/Ktrompfl/VectorEnumeration.jl#references), and is based on the [latest available version](https://github.com/gap-packages/ve) of the authors implementation from 1996.
 
 The package builds upon the types from [AbstractAlgebra.jl](https://github.com/Nemocas/AbstractAlgebra.jl) and provides additional functionality when [Hecke.jl](https://github.com/thofma/Hecke.jl) or [Oscar.jl](https://github.com/oscar-system/Oscar.jl) are loaded.
 
@@ -55,7 +55,7 @@ julia> base_qa(A, R)
 ## License
 VectorEnumeration.jl is licensed under the MIT license; see [LICENSE](https://github.com/Ktrompfl/VectorEnumeration.jl/blob/main/LICENSE) for the full license text.
 
-## [References](@id refs)
+## [References]
 
 [1] S.A. Linton, *Constructing matrix representations of finitely presented groups*,
 Journal of Symbolic Computation, Volume 12, Issues 4–5, 1991, Pages 427-438, ISSN 0747-7171,
