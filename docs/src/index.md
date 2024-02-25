@@ -12,7 +12,7 @@ The package builds upon the types from [AbstractAlgebra.jl](https://github.com/N
 ## Installation
 VectorEnumeration.jl is no registered package, but can be installed with:
 
-```
+```julia
 julia> using Pkg
 
 julia> Pkg.add(url="https://github.com/Ktrompfl/VectorEnumeration.jl")

@@ -12,7 +12,7 @@ The package builds upon the types from [AbstractAlgebra.jl](https://github.com/N
 #### Installation
 VectorEnumeration.jl is no registered package, but can be installed with:
 
-```
+```julia
 julia> using Pkg
 
 julia> Pkg.add(url="https://github.com/Ktrompfl/VectorEnumeration.jl")
@@ -21,7 +21,7 @@ julia> Pkg.add(url="https://github.com/Ktrompfl/VectorEnumeration.jl")
 #### Quick start
 Here is an example of using VectorEnumeration.jl to compute the permutation matrix representation over $\mathbb{Q}$ and a $\mathbb{Q}$-base of the dihedral group of order 6 for the presentation $\langle a, b\ |\ a^3 = b^2 = (ab)^2 =1 \rangle$:
 
-```jldoctest
+```julia
 julia> using AbstractAlgebra, SparseArrays, VectorEnumeration
 
 julia> A, (x, y) = free_associative_algebra(QQ, [:x, :y]);
@@ -61,7 +61,7 @@ julia> base_qa(A, R)
 For more details, please see the [docs](https://ktrompfl.github.io/VectorEnumeration.jl/dev/).
 
 #### License
-VectorEnumeration.jl is licensed under the MIT license; see [LICENSE](https://github.com/Ktrompfl/VectorEnumeration.jl/blob/main/LICENSE) for the full license text.
+VectorEnumeration.jl is licensed under the MIT license; see [LICENSE](./LICENSE) for the full license text.
 
 #### References
 
