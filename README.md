@@ -55,7 +55,7 @@ julia> base_qa(A, R)
 ## License
 VectorEnumeration.jl is licensed under the MIT license; see [LICENSE](https://github.com/Ktrompfl/VectorEnumeration.jl/blob/main/LICENSE) for the full license text.
 
-## [References]
+## References
 
 [1] S.A. Linton, *Constructing matrix representations of finitely presented groups*,
 Journal of Symbolic Computation, Volume 12, Issues 4–5, 1991, Pages 427-438, ISSN 0747-7171,
