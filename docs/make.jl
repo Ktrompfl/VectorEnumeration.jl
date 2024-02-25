@@ -3,7 +3,7 @@ using VectorEnumeration
 
 makedocs(
     sitename = "VectorEnumeration.jl",
-    authors = "Florian Heine <fheine@rptu.de> and Nicolaus Jacobsen <jacobsen@rptu.de>",
+    authors = "Florian Heine and Nicolaus Jacobsen",
     # modules = [VectorEnumeration],
     format = Documenter.HTML(prettyurls = get(ENV, "CI", nothing) == "true"),
     doctest = true,
@@ -15,5 +15,5 @@ makedocs(
 )
 
 deploydocs(
-    repo = "https://github.com/Ktrompfl/VectorEnumeration.jl.git"
+    repo = "github.com/Ktrompfl/VectorEnumeration.jl.git"
 )
