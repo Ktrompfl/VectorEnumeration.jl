@@ -117,7 +117,7 @@ function setupgrouprelation(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup)
 end
 
 """
-    base_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP))
+    base_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP)[1])
 
 Return a list of monomials forming a f - basis of f(FP/U)
 
@@ -161,7 +161,7 @@ julia> base_qm(QQ, FP, U)
  [x1*x2*x1*x2]
 ```
 """
-function base_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP))
+function base_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP)[1])
 
     is_full_fp_group(FP) || error("$FP needs to be a finitely presented group")
 
@@ -172,7 +172,7 @@ end
 
 
 """
-    dimension_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP))
+    dimension_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP)[1])
 
 Return the f - dimension of f(FP/U)
 
@@ -210,7 +210,7 @@ julia> dimension_qm(QQ, FP, U)
 6
 ```
 """
-function dimension_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP))
+function dimension_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP)[1])
 
     is_full_fp_group(FP) || error("$FP needs to be a finitely presented group")
 
@@ -220,7 +220,7 @@ function dimension_qm(f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subg
 end
 
 """
-    matrices_qm(T::Type, f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP))
+    matrices_qm(T::Type, f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP)[1])
 
 Return a f - matrix - representation of f(FP/U) in matrices of type T
 
@@ -288,7 +288,7 @@ julia> Xᶜ
  0  0  0  0  1  0
 ```
 """
-function matrices_qm(T::Type, f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP))
+function matrices_qm(T::Type, f::Field, FP::Oscar.FPGroup, U::Oscar.FPGroup=trivial_subgroup(FP)[1])
 
     is_full_fp_group(FP) || error("$FP needs to be a finitely presented group")
 
